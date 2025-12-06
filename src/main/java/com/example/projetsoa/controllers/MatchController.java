@@ -1,8 +1,5 @@
 package com.example.projetsoa.controllers;
 
-
-
-
 import com.example.projetsoa.Entity.FootballMatch;
 import com.example.projetsoa.controllers.dto.MatchDto;
 import com.example.projetsoa.services.MatchService;
@@ -20,15 +17,14 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-
     @PostMapping
-    public FootballMatch create(@RequestBody MatchDto match) {
-        return matchService.create(match);
+    public FootballMatch create(@RequestBody MatchDto matchDto) {
+        return matchService.create(matchDto);
     }
 
     @PutMapping("/{id}")
-    public Match update(@PathVariable Long id, @RequestBody Match match) {
-        return matchService.update(id, match);
+    public FootballMatch update(@PathVariable Long id, @RequestBody MatchDto matchDto) {
+        return matchService.update(id, matchDto);
     }
 
     @DeleteMapping("/{id}")
@@ -37,15 +33,12 @@ public class MatchController {
     }
 
     @GetMapping("/{id}")
-    public Match getOne(@PathVariable Long id) {
+    public FootballMatch getOne(@PathVariable Long id) {
         return matchService.getById(id);
     }
 
     @GetMapping
-    public List<Match> getAll() {
+    public List<FootballMatch> getAll() {
         return matchService.getAll();
     }
 }
-
-
-

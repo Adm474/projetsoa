@@ -33,17 +33,17 @@ public class MatchService {
         return matchRepository.save(match);
     }
 
-    public Match update(Long id, Match match) {
-        Match existingMatch = matchRepository.findById(id)
+    public FootballMatch update(Long id, MatchDto matchDto) {
+        FootballMatch existingMatch = matchRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Match not found with id: " + id));
 
-        existingMatch.setDate(match.getDate());
-        existingMatch.setOpponent(match.getOpponent());
+        existingMatch.setDate(matchDto.getDate());
+        existingMatch.setOpponent(matchDto.getOpponent());
 
-        // Validate stadium if it's being updated
-        if (match.getStadium() != null && match.getStadium().getId() != null) {
-            Stadium stadium = stadiumRepository.findById(match.getStadium().getId())
-                    .orElseThrow(() -> new RuntimeException("Stadium not found with id: " + match.getStadium().getId()));
+        // Validate and update stadium
+        if (matchDto.getStadiumId() != null) {
+            Stadium stadium = stadiumRepository.findById(matchDto.getStadiumId())
+                    .orElseThrow(() -> new RuntimeException("Stadium not found with id: " + matchDto.getStadiumId()));
             existingMatch.setStadium(stadium);
         }
 
@@ -57,12 +57,12 @@ public class MatchService {
         matchRepository.deleteById(id);
     }
 
-    public Match getById(Long id) {
+    public FootballMatch getById(Long id) {
         return matchRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Match not found with id: " + id));
     }
 
-    public List<Match> getAll() {
+    public List<FootballMatch> getAll() {
         return matchRepository.findAll();
     }
 }
