@@ -3,7 +3,7 @@ package com.example.projetsoa.controllers;
 
 
 
-import com.example.projetsoa.Entity.Match;
+import com.example.projetsoa.Entity.FootballMatch;
 import com.example.projetsoa.controllers.dto.MatchDto;
 import com.example.projetsoa.services.MatchService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class MatchController {
 
 
     @PostMapping
-    public Match create(@RequestBody MatchDto match) {
+    public FootballMatch create(@RequestBody MatchDto match) {
         return matchService.create(match);
     }
 
