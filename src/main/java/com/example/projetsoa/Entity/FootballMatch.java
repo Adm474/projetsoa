@@ -15,10 +15,19 @@ public class FootballMatch {
     private Long id;
 
     private String date;
-    private String opponent;
 
     @ManyToOne
     @JoinColumn(name = "stadium_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Stadium stadium;
+
+    @ManyToOne
+    @JoinColumn(name = "home_club_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Club homeClub;
+
+    @ManyToOne
+    @JoinColumn(name = "away_club_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Club awayClub;
 }

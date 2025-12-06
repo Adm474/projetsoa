@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MatchDto {
     private String date;
-    private String opponent;
-    private Long stadiumId;  // use Long instead of long
+    private Long stadiumId;
+    private Long homeClubId;
+    private Long awayClubId;
 }
